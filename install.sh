@@ -8,8 +8,8 @@ sudo echo "---> Start Install..."
 echo "---> Setup Linux configuration... 1/6"
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y curl git zsh vim python \
-    python-dev build-essential cmake gdb valgrind \
+sudo apt-get install -y curl git zsh vim \
+    python-dev build-essential cmake gdb \
     nodejs tree
 
 echo "---> Clean directories... 2/6"
@@ -21,7 +21,7 @@ echo "---> Clone dotfiles repository... 3/6"
 git clone https://github.com/matabou/dotfiles.git $SCRIPTPATH
 
 echo "---> Install OhMyZsh... 4/6"
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 echo "---> Generate links... 5/6"
 (
@@ -31,9 +31,6 @@ echo "---> Generate links... 5/6"
   ln -sf "$SCRIPTPATH/dotfiles/.gitconfig" .gitconfig
   ln -sf "$SCRIPTPATH/dotfiles/.vimrc" .vimrc
   ln -sf "$SCRIPTPATH/dotfiles/.zshrc" .zshrc
-
-  ln -sf "$SCRIPTPATH/dotfiles/.Xresources" .Xresources
-  xrdb ~/.Xresources
 
   mkdir -p $HOME/.vim/colors && cd $HOME/.vim/colors
   ln -sf "$SCRIPTPATH/dotfiles/.vim/colors/lucius.vim" lucius.vim
